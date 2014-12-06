@@ -13,6 +13,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -20,16 +21,25 @@ import java.util.regex.Pattern;
  */
 public class RegisterAction extends ActionSupport {
 
+    HttpSession session;
     String inputQuestion;
     String inputUserName;
     String inputPassword1;
     String inputPassword2;
     String inputEmail;
-    
     String inputAnswer;
+    
     boolean submit;
 
-    public String execute() {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
+        entity.User user = new entity.User();
+        user.Registration(inputUserName, inputPassword1, inputEmail, inputQuestion, inputAnswer, "User");
+        
+        session = request.getSession(true);
+        session.setAttribute("loggedIn", true);
+        session.setAttribute("securityQuestionId", inputQuestion);
+        session.setAttribute("userName", inputUserName);
+        session.setAttribute("userClass", "User");
         return SUCCESS;
     }
 
@@ -62,8 +72,9 @@ public class RegisterAction extends ActionSupport {
         if (inputAnswer.length() > 32 || inputAnswer.length() < 3) {
             addFieldError("inputAnswer", "Your answer must be between 3 and 32 characters long");
         }
-        if (Pattern.matches("^[A-Z0-9._+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$", inputEmail.toUpperCase())) {
-            
+        if (Pattern.matches("^[_A-Za-z0-9-\\\\+]+(\\\\.[_A-Za-z0-9-]+)*@\"\n" +
+"		+ \"[A-Za-z0-9-]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$", inputEmail)) {
+            addFieldError("inputEmail", "Invalid Email Address");
         }
         if (inputPassword2.equals(inputPassword1)) {
             addFieldError("inputPassword", "Passwords do not match");

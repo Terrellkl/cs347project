@@ -3,9 +3,11 @@
     Created on : Nov 9, 2014, 3:33:28 PM
     Author     : terrelkl
 --%>
-<%@page contentType="text/html" %>
+
+<%@ page contentType="text/html" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="mt" uri="WEB-INF/tlds/secure.tld" %>
+
 <mt:secure/>
 <jsp:include page="assets/head.jsp" /> 
 

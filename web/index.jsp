@@ -3,7 +3,6 @@
     Created on : Nov 9, 2014, 2:54:44 PM
     Author     : terrelkl
 --%>
-
 <jsp:include page="assets/head.jsp" /> 
 
                 <div class="jumbotron">

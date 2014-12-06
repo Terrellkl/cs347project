@@ -5,9 +5,10 @@
     Author     : terrelkl
 
 --%>
-
+<%@ page errorPage="stderror.jsp" %>
 <!DOCTYPE html>
 <html>
+    <mt:secure/>
     <head>
         <title>TodoList</title>
         <meta charset="UTF-8">
@@ -27,7 +28,7 @@
                         <li class="active"><a href="dashboard.jsp">{User}'s Dashboard</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Logged in ({User})</a></li>
+                        <li><a href="login.jsp">Logged in ()</a></li>
                         <li><a href="logout.jsp">Logout</a></li>
                     </ul>
                 </div>

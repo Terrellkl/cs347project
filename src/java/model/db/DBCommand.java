@@ -24,7 +24,7 @@ public class DBCommand extends DBAccess {
       }
       Statement stmt = connection.createStatement();
       stmt.executeUpdate(command);
-      connection.close();
+    //      connection.close();
     } catch (SQLException sqe) {
       sqe.printStackTrace();
       return false;

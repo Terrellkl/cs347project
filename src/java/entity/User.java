@@ -22,11 +22,21 @@ public class User{
     String md5password;
     
     model.db.DBQuery dbq = new model.db.DBQuery();
+    model.db.DBCommand dbc = new model.db.DBCommand();
+    
+    public User() {
+        // For use in registration
+    }
     
     public User(String user, String pass) {
         this.userName = user.toLowerCase(); // Case Insensitive username will always be stored as lowercase.
         this.password = hashedPassword(pass);
         data = queryUser(user);
+    }
+    
+    public boolean Registration(String userName, String password, String email, String Question, String Answer, String userClass) {
+        String command = "INSERT INTO users (userName, password, email, securityQuestion, securityAnswer) VALUES ('"+userName+"','"+password+"','"+email+"','"+Question+"','"+Answer+"');";
+        return dbc.executeCommand(command);
     }
     
     public boolean authenticate() {

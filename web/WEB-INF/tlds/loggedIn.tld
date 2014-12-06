@@ -3,7 +3,7 @@
   <tlib-version>1.0</tlib-version>
   <tag>
     <name>loggedIn</name>
-    <tag-class>loggedIn.secure</tag-class>
+    <tag-class>tags.loggedIn</tag-class>
     <body-content>empty</body-content>
   </tag>
   <!-- A validator verifies that the tags are used correctly at JSP
